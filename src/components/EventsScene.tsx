@@ -1,16 +1,26 @@
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { EVENT_EXPERIENCES } from '../data/events'
 import { getGeneralWhatsAppUrl } from '../config/agency'
 import { WhatsAppIcon } from './WhatsAppIcon'
+import { MorphSlider } from './MorphSlider'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export const EventsScene: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
-  const gridRef = useRef<HTMLDivElement>(null)
+  const [activeEventIndex, setActiveEventIndex] = useState(0)
+
+  const sliderItems = EVENT_EXPERIENCES.map((exp) => ({
+    image: exp.image,
+    title: `${exp.number}. ${exp.title}`,
+    subtitle: exp.subtitle,
+    caption: `${exp.title} — ${exp.subtitle}`,
+  }))
+
+  const activeExp = EVENT_EXPERIENCES[activeEventIndex] || EVENT_EXPERIENCES[0]
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -26,26 +36,6 @@ export const EventsScene: React.FC = () => {
             scrollTrigger: {
               trigger: headerRef.current,
               start: 'top 85%',
-            },
-          }
-        )
-      }
-
-      const items = gridRef.current?.children
-      if (items && items.length > 0) {
-        gsap.fromTo(
-          items,
-          { opacity: 0, y: 40, scale: 0.95 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: gridRef.current,
-              start: 'top 80%',
             },
           }
         )
@@ -78,53 +68,73 @@ export const EventsScene: React.FC = () => {
           </p>
         </div>
 
-        {/* 4 Formats Grid: Desktop 4 in a row, Mobile 2 per line, Safe Margins */}
-        <div
-          ref={gridRef}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6"
-        >
-          {EVENT_EXPERIENCES.map((exp) => (
-            <div
-              key={exp.id}
-              className="group bg-[#0a0a0a] border border-[#1f1f1f] flex flex-col p-3 sm:p-5 rounded-2xl hover:border-white/20 transition-all duration-300"
-            >
-              {/* Photo Frame with smooth scale transition */}
-              <div className="aspect-[4/3] sm:aspect-[16/10] overflow-hidden mb-3 sm:mb-4 border border-[#1c1c1c] bg-[#111111] rounded-xl">
-                <img
-                  src={exp.image}
-                  alt={exp.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
-                />
+        {/* MorphSlider from React Bits */}
+        <div className="w-full relative h-[360px] sm:h-[480px] md:h-[540px] mb-8">
+          <MorphSlider
+            items={sliderItems}
+            startIndex={0}
+            transition="melt"
+            intensity={0.55}
+            aberration={0.35}
+            drift={0.4}
+            autoplay
+            autoplayDelay={4.5}
+            radius={24}
+            onIndexChange={(idx) => setActiveEventIndex(idx)}
+          />
+        </div>
+
+        {/* Dynamic Details Card for Current Format */}
+        {activeExp && (
+          <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-5 sm:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 transition-all duration-300 hover:border-white/20">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-2.5 flex-wrap mb-2">
+                <span className="font-night text-xs font-bold text-[#d4ff00] uppercase tracking-wider px-3 py-1 bg-white/5 rounded-full border border-[#d4ff00]/30">
+                  FORMATO {activeExp.number}
+                </span>
+                <span className="text-xs text-[#888888] font-medium tracking-wider uppercase">
+                  {activeExp.subtitle}
+                </span>
               </div>
 
-              <span className="font-night text-[8px] sm:text-[9px] font-bold text-[#d4ff00] uppercase tracking-wider mb-1 block">
-                {exp.number} • {exp.subtitle.split('•')[0].trim()}
-              </span>
-
-              <h3 className="font-night font-extrabold text-sm sm:text-lg text-white mb-2 leading-tight">
-                {exp.title}
+              <h3 className="font-night font-extrabold text-2xl sm:text-3xl text-white tracking-tight mb-3">
+                {activeExp.title}
               </h3>
 
-              <p className="text-[10px] sm:text-xs text-[#888888] leading-relaxed mb-4 line-clamp-3">
-                {exp.description}
+              <p className="text-xs sm:text-sm text-[#aaaaaa] leading-relaxed mb-4">
+                {activeExp.description}
               </p>
 
-              {/* Action - Rounded Full Button */}
+              <div className="flex flex-wrap gap-2 sm:gap-3">
+                {activeExp.details.map((detail, i) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center gap-1.5 text-[11px] text-[#cccccc] bg-[#141414] border border-white/5 px-3 py-1 rounded-full"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#d4ff00]" />
+                    <span>{detail}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Action CTA: Rounded Full WhatsApp Button */}
+            <div className="w-full lg:w-auto pt-2 lg:pt-0">
               <a
                 href={getGeneralWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-auto inline-flex items-center justify-center gap-1.5 py-2.5 sm:py-3 bg-[#141414] hover:bg-[#d4ff00] text-white hover:text-black font-night font-bold text-[9px] sm:text-xs uppercase tracking-wider transition-all rounded-full border border-white/10 hover:border-[#d4ff00] active:scale-95 shadow-sm"
-                title="Consultar formato no WhatsApp"
+                className="w-full lg:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-night font-bold text-xs tracking-wider uppercase transition-all rounded-full shadow-[0_0_20px_rgba(212,255,0,0.25)] hover:shadow-[0_0_30px_rgba(212,255,0,0.4)] active:scale-95 whitespace-nowrap"
+                title={`Consultar formato ${activeExp.title} no WhatsApp`}
               >
-                <WhatsAppIcon className="w-3.5 h-3.5" />
-                <span>CONSULTAR</span>
+                <WhatsAppIcon className="w-4 h-4" />
+                <span>CONSULTAR ESTE FORMATO</span>
               </a>
             </div>
-          ))}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   )
 }
+
