@@ -40,7 +40,7 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Aurora Brutalist Display Font Utilities */
+/* Aurora Brutalist Display Font Utilities (Mantida intacta no Hero) */
 .font-aurora {
   font-family: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
   letter-spacing: 0.04em;
@@ -51,9 +51,47 @@ html, body {
   letter-spacing: 0.08em;
 }
 
-.font-editorial-headline {
-  font-family: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
+/* Duas fontes da nova imagem para o restante do site: */
+/* 1. NIGHT: Display Bold moderno, imponente e limpo */
+.font-night {
+  font-family: 'Syne', 'Oswald', sans-serif;
+  letter-spacing: -0.01em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* 2. party: Caligrafia script dourada/elegante e fluida */
+.font-party {
+  font-family: 'Pinyon Script', 'Great Vibes', cursive;
+  font-weight: 400;
+  font-style: normal;
   letter-spacing: 0.02em;
+}
+
+.font-script {
+  font-family: 'Great Vibes', 'Pinyon Script', cursive;
+}
+
+/* Fundo transparente vidralítico (Glassmorphism de alta densidade) */
+.glass-nav {
+  background: rgba(10, 10, 10, 0.35);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+}
+
+.glass-nav-scrolled {
+  background: rgba(5, 5, 5, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.font-editorial-headline {
+  font-family: 'Syne', sans-serif;
+  letter-spacing: -0.01em;
 }
 
 /* Subtle Shimmer Animation for Hero Title (5 seconds sequence) */

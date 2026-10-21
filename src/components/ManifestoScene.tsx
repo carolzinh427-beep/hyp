@@ -5,7 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 interface ManifestoPhrase {
-  tag: string
   line1: string
   line2: string
   accent: string
@@ -14,24 +13,21 @@ interface ManifestoPhrase {
 
 const PHRASES: ManifestoPhrase[] = [
   {
-    tag: 'FILOSOFIA 01',
     line1: 'O PALCO NÃO É SÓ UM LUGAR.',
     line2: 'É ONDE A ENERGIA SE TRANSFORMA.',
-    accent: 'ENERGIA SE TRANSFORMA.',
+    accent: 'energia se transforma.',
     sub: 'Conexão artística real que envolve cada pessoa no evento.',
   },
   {
-    tag: 'FILOSOFIA 02',
     line1: 'NÃO ENTREGAMOS APENAS UM SHOW.',
     line2: 'CRIAMOS O PONTO ALTO DA NOITE.',
-    accent: 'O PONTO ALTO DA NOITE.',
+    accent: 'o ponto alto da noite.',
     sub: 'Curadoria estratégica com artistas preparados para marcar época.',
   },
   {
-    tag: 'FILOSOFIA 03',
     line1: 'CURADORIA DE ALTO IMPACTO.',
     line2: 'QUANDO O SOM COMEÇA, TODO MUNDO ESTÁ LÁ.',
-    accent: 'TODO MUNDO ESTÁ LÁ.',
+    accent: 'todo mundo está lá.',
     sub: 'Rider técnico impecável e excelência executiva do início ao fim.',
   },
 ]
@@ -145,8 +141,8 @@ export const ManifestoScene: React.FC = () => {
       >
         {/* Top Header & Indicator */}
         <div className="max-w-4xl mx-auto w-full flex items-center justify-between border-b border-[#1c1c1c] pb-4 px-2">
-          <span className="font-cinzel text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#666666] uppercase">
-            Manifesto • Filosofia
+          <span className="font-night text-[10px] sm:text-xs font-bold tracking-[0.25em] text-[#666666] uppercase">
+            MANIFESTO HYPE
           </span>
           <div className="flex items-center gap-2 text-xs tracking-widest font-mono text-[#888888]">
             <span className={currentStep === 1 ? 'text-[#d4ff00] font-bold' : 'text-[#444444]'}>01</span>
@@ -157,7 +153,7 @@ export const ManifestoScene: React.FC = () => {
           </div>
         </div>
 
-        {/* 3D Flipping Stage with Aurora Brutalist Font */}
+        {/* 3D Flipping Stage with Night + Party Dual Typography */}
         <div
           className="relative max-w-4xl mx-auto w-full my-auto h-[320px] sm:h-[360px] flex items-center justify-center px-2"
           style={{ perspective: '1100px', transformStyle: 'preserve-3d' }}
@@ -168,12 +164,11 @@ export const ManifestoScene: React.FC = () => {
             className="absolute inset-0 flex flex-col items-center justify-center text-center select-none px-2"
             style={{ backfaceVisibility: 'hidden' }}
           >
-            <span className="font-cinzel text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#d4ff00] uppercase mb-4">
-              {PHRASES[0].tag}
-            </span>
-            <h2 className="font-aurora font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.15] text-white max-w-3xl">
+            <h2 className="font-night font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.15] text-white max-w-3xl">
               {PHRASES[0].line1} <br />
-              <span className="text-[#d4ff00]">{PHRASES[0].accent}</span>
+              <span className="font-party text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-[#d4ff00] font-normal normal-case inline-block mt-2">
+                {PHRASES[0].accent}
+              </span>
             </h2>
             <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-[#888888] max-w-md">
               {PHRASES[0].sub}
@@ -186,12 +181,11 @@ export const ManifestoScene: React.FC = () => {
             className="absolute inset-0 flex flex-col items-center justify-center text-center select-none px-2"
             style={{ backfaceVisibility: 'hidden' }}
           >
-            <span className="font-cinzel text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#d4ff00] uppercase mb-4">
-              {PHRASES[1].tag}
-            </span>
-            <h2 className="font-aurora font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.15] text-white max-w-3xl">
+            <h2 className="font-night font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.15] text-white max-w-3xl">
               {PHRASES[1].line1} <br />
-              <span className="text-[#d4ff00]">{PHRASES[1].accent}</span>
+              <span className="font-party text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-[#d4ff00] font-normal normal-case inline-block mt-2">
+                {PHRASES[1].accent}
+              </span>
             </h2>
             <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-[#888888] max-w-md">
               {PHRASES[1].sub}
@@ -204,12 +198,11 @@ export const ManifestoScene: React.FC = () => {
             className="absolute inset-0 flex flex-col items-center justify-center text-center select-none px-2"
             style={{ backfaceVisibility: 'hidden' }}
           >
-            <span className="font-cinzel text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#d4ff00] uppercase mb-4">
-              {PHRASES[2].tag}
-            </span>
-            <h2 className="font-aurora font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.15] text-white max-w-3xl">
+            <h2 className="font-night font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.15] text-white max-w-3xl">
               {PHRASES[2].line1} <br />
-              <span className="text-[#d4ff00]">{PHRASES[2].accent}</span>
+              <span className="font-party text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-[#d4ff00] font-normal normal-case inline-block mt-2">
+                {PHRASES[2].accent}
+              </span>
             </h2>
             <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-[#888888] max-w-md">
               {PHRASES[2].sub}

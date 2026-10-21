@@ -24,8 +24,10 @@ export const Navbar = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-          scrolled ? 'bg-black/95 border-b border-[#1c1c1c] py-4' : 'bg-black/80 py-5'
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+          scrolled
+            ? 'glass-nav-scrolled py-3.5'
+            : 'glass-nav py-4 sm:py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between">
@@ -38,31 +40,31 @@ export const Navbar = () => {
             <span className="font-aurora font-black text-xl sm:text-2xl tracking-wider text-[#d4ff00]">
               HYPE
             </span>
-            <span className="font-cinzel text-[9px] sm:text-[11px] tracking-[0.25em] text-[#888888] uppercase font-bold border-l border-[#222222] pl-2.5 sm:pl-3">
+            <span className="font-night text-[9px] sm:text-[11px] tracking-[0.25em] text-[#888888] uppercase font-bold border-l border-white/10 pl-2.5 sm:pl-3">
               ENTERTAINMENT
             </span>
           </a>
 
-          {/* Navigation Links with Cinzel font */}
+          {/* Navigation Links */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="font-cinzel text-xs tracking-widest uppercase font-semibold text-[#888888] hover:text-[#d4ff00] transition-colors py-1"
+                className="font-night text-xs tracking-wider uppercase font-semibold text-[#a0a0a0] hover:text-[#d4ff00] transition-colors py-1"
               >
                 {item.label}
               </a>
             ))}
           </nav>
 
-          {/* Action Button - Icon Only / Clean Action without phone digits */}
+          {/* Action Button - Rounded Full Pill with WhatsApp Icon */}
           <div className="hidden sm:flex items-center">
             <a
               href={getGeneralWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-cinzel font-bold text-xs tracking-wider uppercase transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-night font-bold text-xs tracking-wider uppercase transition-all rounded-full hover:shadow-[0_0_20px_rgba(212,255,0,0.3)] active:scale-95"
               title="Falar no WhatsApp"
             >
               <WhatsAppIcon className="w-4 h-4" />
@@ -70,13 +72,13 @@ export const Navbar = () => {
             </a>
           </div>
 
-          {/* Mobile Menu Trigger & Quick WhatsApp */}
+          {/* Mobile Menu Trigger & Quick WhatsApp (Rounded Full) */}
           <div className="flex sm:hidden items-center gap-2">
             <a
               href={getGeneralWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 bg-[#d4ff00] text-black"
+              className="p-2.5 bg-[#d4ff00] text-black rounded-full"
               aria-label="WhatsApp"
             >
               <WhatsAppIcon className="w-4 h-4" />
@@ -84,7 +86,7 @@ export const Navbar = () => {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="font-cinzel px-3 py-1.5 border border-[#222222] text-xs font-bold uppercase tracking-wider text-white"
+              className="font-night px-4 py-2 border border-white/15 text-xs font-bold uppercase tracking-wider text-white rounded-full bg-black/40 backdrop-blur-md"
               aria-label="Menu"
             >
               {mobileMenuOpen ? 'FECHAR' : 'MENU'}
@@ -93,28 +95,28 @@ export const Navbar = () => {
         </div>
       </header>
 
-      {/* Mobile Menu with Aurora Font */}
+      {/* Mobile Menu with Glassmorphism */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-black flex flex-col justify-between p-6 pt-24 sm:hidden">
+        <div className="fixed inset-0 z-40 bg-black/90 backdrop-blur-2xl flex flex-col justify-between p-6 pt-24 sm:hidden border-b border-white/10">
           <nav className="flex flex-col gap-5">
             {navLinks.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="font-aurora font-bold text-2xl text-white hover:text-[#d4ff00] transition-colors border-b border-[#1c1c1c] pb-3"
+                className="font-night font-bold text-2xl text-white hover:text-[#d4ff00] transition-colors border-b border-white/10 pb-3"
               >
                 {item.label}
               </a>
             ))}
           </nav>
 
-          <div className="pt-6 border-t border-[#1c1c1c]">
+          <div className="pt-6 border-t border-white/10">
             <a
               href={getGeneralWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full text-center py-3.5 bg-[#d4ff00] text-black font-cinzel font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2"
+              className="w-full text-center py-3.5 bg-[#d4ff00] text-black font-night font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 rounded-full"
             >
               <WhatsAppIcon className="w-4 h-4" />
               <span>FALAR NO WHATSAPP</span>

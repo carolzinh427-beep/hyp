@@ -53,7 +53,7 @@ export function App() {
           href={getGeneralWhatsAppUrl()}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center p-3.5 bg-[#d4ff00] hover:bg-[#c2ea00] text-black shadow-lg transition-transform hover:scale-105 active:scale-95 border border-black"
+          className="flex items-center justify-center p-3.5 bg-[#d4ff00] hover:bg-[#c2ea00] text-black shadow-[0_4px_25px_rgba(212,255,0,0.35)] transition-all hover:scale-105 active:scale-95 border border-black rounded-full"
           aria-label="Falar no WhatsApp"
           title="Falar no WhatsApp"
         >

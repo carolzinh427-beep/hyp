@@ -43,26 +43,28 @@ export const CtaScene: React.FC = () => {
       className="relative w-full bg-black text-white pt-16 sm:pt-24 pb-12 px-4 sm:px-8 border-t border-[#1c1c1c] text-center"
     >
       <div ref={contentRef} className="max-w-4xl mx-auto flex flex-col items-center text-center px-2">
-        <span className="font-cinzel text-[10px] sm:text-xs font-semibold tracking-[0.3em] text-[#d4ff00] uppercase mb-4">
+        <span className="font-night text-[10px] sm:text-xs font-bold tracking-[0.3em] text-[#d4ff00] uppercase mb-4">
           Atendimento & Curadoria
         </span>
 
-        <h2 className="font-aurora font-black text-3xl sm:text-5xl md:text-6xl tracking-tight leading-[1.05] text-white mb-6">
+        <h2 className="font-night font-extrabold text-3xl sm:text-5xl md:text-6xl tracking-tight leading-[1.1] text-white mb-6">
           SEU EVENTO. <br />
           SUA HISTÓRIA. <br />
-          <span className="text-[#d4ff00]">SUA HYPE.</span>
+          <span className="font-party text-4xl sm:text-6xl md:text-7xl text-[#d4ff00] font-normal normal-case inline-block mt-2">
+            sua hype.
+          </span>
         </h2>
 
         <p className="text-xs sm:text-base text-[#888888] max-w-md mb-8">
           Escolha os artistas que combinam com o perfil do seu evento e garanta a data oficial com nosso time.
         </p>
 
-        {/* Action Buttons: Escolher Artista + WhatsApp Icon Only */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto mb-16">
+        {/* Action Buttons: Escolher Artista + WhatsApp Icon Only (Rounded Full) */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto mb-16">
           <a
             href="#artistas"
             onClick={scrollToArtists}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-night font-bold text-xs sm:text-sm tracking-widest uppercase transition-all rounded-full shadow-[0_0_25px_rgba(212,255,0,0.25)] hover:shadow-[0_0_35px_rgba(212,255,0,0.4)] active:scale-95"
           >
             <span>ESCOLHER ARTISTA PARA MEU EVENTO</span>
             <span>↓</span>
@@ -72,7 +74,7 @@ export const CtaScene: React.FC = () => {
             href={getGeneralWhatsAppUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 border border-[#333333] hover:border-[#d4ff00] text-white hover:text-[#d4ff00] font-cinzel font-bold text-xs tracking-wider uppercase transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 border border-white/20 hover:border-[#d4ff00] text-white hover:text-[#d4ff00] font-night font-bold text-xs tracking-wider uppercase transition-all rounded-full bg-black/40 backdrop-blur-md active:scale-95"
             title="Falar no WhatsApp"
           >
             <WhatsAppIcon className="w-4 h-4" />
@@ -83,7 +85,7 @@ export const CtaScene: React.FC = () => {
         {/* Agency Information Bar */}
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 text-center border-t border-[#1c1c1c] pt-10 pb-8 text-xs text-[#888888]">
           <div className="flex flex-col items-center gap-1.5">
-            <span className="font-cinzel text-white font-bold uppercase tracking-wider">CANAL DIRETO</span>
+            <span className="font-night text-white font-bold uppercase tracking-wider">CANAL DIRETO</span>
             <a
               href={getGeneralWhatsAppUrl()}
               target="_blank"
@@ -102,13 +104,13 @@ export const CtaScene: React.FC = () => {
           </div>
 
           <div className="flex flex-col items-center gap-1.5">
-            <span className="font-cinzel text-white font-bold uppercase tracking-wider">COBERTURA</span>
+            <span className="font-night text-white font-bold uppercase tracking-wider">COBERTURA</span>
             <span>{AGENCY_CONFIG.location}</span>
             <span>{AGENCY_CONFIG.operatingHours}</span>
           </div>
 
           <div className="flex flex-col items-center gap-1.5">
-            <span className="font-cinzel text-white font-bold uppercase tracking-wider">HYPE ENTERTAINMENT</span>
+            <span className="font-night text-white font-bold uppercase tracking-wider">HYPE ENTERTAINMENT</span>
             <span>Curadoria e agenciamento de atrações artísticas para eventos em todo o país.</span>
           </div>
         </div>

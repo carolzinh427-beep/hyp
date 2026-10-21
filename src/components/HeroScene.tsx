@@ -155,22 +155,22 @@ export const HeroScene: React.FC = () => {
           </p>
 
           {/* Primary Action: Escolher Artista Para Meu Evento */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto">
             <a
               href="#artistas"
               onClick={scrollToArtists}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase transition-transform active:scale-95 shadow-[0_0_30px_rgba(212,255,0,0.2)]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-night font-bold text-xs sm:text-sm tracking-widest uppercase transition-all rounded-full active:scale-95 shadow-[0_0_30px_rgba(212,255,0,0.25)] hover:shadow-[0_0_40px_rgba(212,255,0,0.4)]"
             >
               <span>ESCOLHER ARTISTA PARA MEU EVENTO</span>
               <span>↓</span>
             </a>
 
-            {/* WhatsApp Icon Only Button */}
+            {/* WhatsApp Icon Only Button - Rounded Full */}
             <a
               href={getGeneralWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center p-4 border border-[#333333] hover:border-[#d4ff00] text-white hover:text-[#d4ff00] transition-colors"
+              className="inline-flex items-center justify-center p-4 border border-white/20 hover:border-[#d4ff00] text-white hover:text-[#d4ff00] transition-all rounded-full bg-black/40 backdrop-blur-md active:scale-95"
               title="Falar no WhatsApp"
               aria-label="Falar no WhatsApp"
             >
