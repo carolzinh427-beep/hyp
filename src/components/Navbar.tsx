@@ -29,27 +29,27 @@ export const Navbar = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with Aurora Font */}
           <a
             href="#"
-            className="flex items-center gap-3 focus:outline-none"
+            className="flex items-center gap-2.5 sm:gap-3 focus:outline-none"
             aria-label="HYPE Entertainment"
           >
-            <span className="font-editorial-headline font-black text-xl sm:text-2xl tracking-tighter text-white">
+            <span className="font-aurora font-black text-xl sm:text-2xl tracking-wider text-[#d4ff00]">
               HYPE
             </span>
-            <span className="text-[10px] sm:text-[11px] tracking-[0.25em] text-[#777777] uppercase font-semibold border-l border-[#222222] pl-3">
+            <span className="font-cinzel text-[9px] sm:text-[11px] tracking-[0.25em] text-[#888888] uppercase font-bold border-l border-[#222222] pl-2.5 sm:pl-3">
               ENTERTAINMENT
             </span>
           </a>
 
-          {/* Navigation Links */}
+          {/* Navigation Links with Cinzel font */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-xs tracking-wider uppercase font-medium text-[#888888] hover:text-white transition-colors py-1"
+                className="font-cinzel text-xs tracking-widest uppercase font-semibold text-[#888888] hover:text-[#d4ff00] transition-colors py-1"
               >
                 {item.label}
               </a>
@@ -62,7 +62,7 @@ export const Navbar = () => {
               href={getGeneralWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-semibold text-xs tracking-wider uppercase transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-cinzel font-bold text-xs tracking-wider uppercase transition-colors"
               title="Falar no WhatsApp"
             >
               <WhatsAppIcon className="w-4 h-4" />
@@ -84,7 +84,7 @@ export const Navbar = () => {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="px-3 py-1.5 border border-[#222222] text-xs font-semibold uppercase tracking-wider text-white"
+              className="font-cinzel px-3 py-1.5 border border-[#222222] text-xs font-bold uppercase tracking-wider text-white"
               aria-label="Menu"
             >
               {mobileMenuOpen ? 'FECHAR' : 'MENU'}
@@ -93,7 +93,7 @@ export const Navbar = () => {
         </div>
       </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu with Aurora Font */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 bg-black flex flex-col justify-between p-6 pt-24 sm:hidden">
           <nav className="flex flex-col gap-5">
@@ -102,7 +102,7 @@ export const Navbar = () => {
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="font-editorial-headline font-bold text-2xl text-white hover:text-[#d4ff00] transition-colors border-b border-[#1c1c1c] pb-3"
+                className="font-aurora font-bold text-2xl text-white hover:text-[#d4ff00] transition-colors border-b border-[#1c1c1c] pb-3"
               >
                 {item.label}
               </a>
@@ -114,7 +114,7 @@ export const Navbar = () => {
               href={getGeneralWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full text-center py-3.5 bg-[#d4ff00] text-black font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2"
+              className="w-full text-center py-3.5 bg-[#d4ff00] text-black font-cinzel font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2"
             >
               <WhatsAppIcon className="w-4 h-4" />
               <span>FALAR NO WHATSAPP</span>

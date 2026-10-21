@@ -24,10 +24,10 @@ export const ArtistRiderModal: React.FC<ArtistRiderModalProps> = ({ artist, onCl
 
         {/* Modal Header */}
         <div className="border-b border-[#222222] pb-4 mb-5 text-center sm:text-left">
-          <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-[#d4ff00] uppercase block mb-1">
+          <span className="font-cinzel text-[10px] sm:text-xs font-bold tracking-wider text-[#d4ff00] uppercase block mb-1">
             Ficha Técnica & Rider
           </span>
-          <h3 className="font-editorial-headline font-black text-2xl sm:text-3xl text-white">
+          <h3 className="font-aurora font-black text-2xl sm:text-3xl text-white">
             {artist.name}
           </h3>
           <p className="text-xs text-[#888888] mt-1">{artist.genre} • {artist.subGenre}</p>
@@ -36,28 +36,28 @@ export const ArtistRiderModal: React.FC<ArtistRiderModalProps> = ({ artist, onCl
         {/* Rider Specs */}
         <div className="grid grid-cols-2 gap-3 mb-6">
           <div className="border border-[#1f1f1f] bg-[#141414] p-3 text-center sm:text-left">
-            <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#777777] block mb-1">
+            <span className="font-cinzel text-[9px] sm:text-[10px] uppercase tracking-wider text-[#777777] block mb-1">
               Formato de Palco
             </span>
             <p className="text-xs sm:text-sm font-medium text-white">{artist.rider.format}</p>
           </div>
 
           <div className="border border-[#1f1f1f] bg-[#141414] p-3 text-center sm:text-left">
-            <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#777777] block mb-1">
+            <span className="font-cinzel text-[9px] sm:text-[10px] uppercase tracking-wider text-[#777777] block mb-1">
               Duração
             </span>
             <p className="text-xs sm:text-sm font-medium text-white">{artist.rider.duration}</p>
           </div>
 
           <div className="border border-[#1f1f1f] bg-[#141414] p-3 text-center sm:text-left">
-            <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#777777] block mb-1">
+            <span className="font-cinzel text-[9px] sm:text-[10px] uppercase tracking-wider text-[#777777] block mb-1">
               Equipe Técnica
             </span>
             <p className="text-xs sm:text-sm font-medium text-white">{artist.rider.crewCount} integrantes</p>
           </div>
 
           <div className="border border-[#1f1f1f] bg-[#141414] p-3 text-center sm:text-left">
-            <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#777777] block mb-1">
+            <span className="font-cinzel text-[9px] sm:text-[10px] uppercase tracking-wider text-[#777777] block mb-1">
               Dimensões de Palco
             </span>
             <p className="text-xs sm:text-sm font-medium text-white">{artist.rider.stageFootprint}</p>
@@ -66,7 +66,7 @@ export const ArtistRiderModal: React.FC<ArtistRiderModalProps> = ({ artist, onCl
 
         {/* Contexts */}
         <div className="mb-6">
-          <span className="text-[10px] sm:text-xs tracking-wider text-[#777777] uppercase block mb-2 text-center sm:text-left">
+          <span className="font-cinzel text-[10px] sm:text-xs tracking-wider text-[#777777] uppercase block mb-2 text-center sm:text-left">
             Indicado para:
           </span>
           <div className="flex flex-wrap justify-center sm:justify-start gap-1.5">
@@ -87,7 +87,7 @@ export const ArtistRiderModal: React.FC<ArtistRiderModalProps> = ({ artist, onCl
             href={getArtistWhatsAppUrl(artist.name)}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full inline-flex items-center justify-center gap-2 py-3.5 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-bold text-xs tracking-widest uppercase transition-colors"
+            className="w-full inline-flex items-center justify-center gap-2 py-3.5 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-cinzel font-bold text-xs tracking-widest uppercase transition-colors"
           >
             <WhatsAppIcon className="w-4 h-4" />
             <span>SOLICITAR DISPONIBILIDADE NO WHATSAPP</span>

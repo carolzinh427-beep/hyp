@@ -52,7 +52,6 @@ export const ManifestoScene: React.FC = () => {
 
       if (!s1 || !s2 || !s3 || !pinTargetRef.current) return
 
-      // Setup initial 3D positions
       gsap.set(s1, { opacity: 1, rotateX: 0, y: 0, transformOrigin: '50% 50% -80px' })
       gsap.set(s2, { opacity: 0, rotateX: -70, y: 80, transformOrigin: '50% 50% -80px' })
       gsap.set(s3, { opacity: 0, rotateX: -70, y: 80, transformOrigin: '50% 50% -80px' })
@@ -78,7 +77,7 @@ export const ManifestoScene: React.FC = () => {
         },
       })
 
-      // Phase 1: Slide 1 flips up & out, Slide 2 flips in
+      // Phase 1: Slide 1 flips out, Slide 2 flips in
       tl.to(
         s1,
         {
@@ -104,7 +103,7 @@ export const ManifestoScene: React.FC = () => {
 
       tl.to({}, { duration: 0.4 })
 
-      // Phase 2: Slide 2 flips up & out, Slide 3 flips in
+      // Phase 2: Slide 2 flips out, Slide 3 flips in
       tl.to(
         s2,
         {
@@ -146,7 +145,7 @@ export const ManifestoScene: React.FC = () => {
       >
         {/* Top Header & Indicator */}
         <div className="max-w-4xl mx-auto w-full flex items-center justify-between border-b border-[#1c1c1c] pb-4 px-2">
-          <span className="text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#666666] uppercase">
+          <span className="font-cinzel text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#666666] uppercase">
             Manifesto • Filosofia
           </span>
           <div className="flex items-center gap-2 text-xs tracking-widest font-mono text-[#888888]">
@@ -158,7 +157,7 @@ export const ManifestoScene: React.FC = () => {
           </div>
         </div>
 
-        {/* 3D Flipping Stage (Centered) */}
+        {/* 3D Flipping Stage with Aurora Brutalist Font */}
         <div
           className="relative max-w-4xl mx-auto w-full my-auto h-[320px] sm:h-[360px] flex items-center justify-center px-2"
           style={{ perspective: '1100px', transformStyle: 'preserve-3d' }}
@@ -169,10 +168,10 @@ export const ManifestoScene: React.FC = () => {
             className="absolute inset-0 flex flex-col items-center justify-center text-center select-none px-2"
             style={{ backfaceVisibility: 'hidden' }}
           >
-            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-[#d4ff00] uppercase mb-4">
+            <span className="font-cinzel text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#d4ff00] uppercase mb-4">
               {PHRASES[0].tag}
             </span>
-            <h2 className="font-editorial-headline font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white max-w-3xl">
+            <h2 className="font-aurora font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.15] text-white max-w-3xl">
               {PHRASES[0].line1} <br />
               <span className="text-[#d4ff00]">{PHRASES[0].accent}</span>
             </h2>
@@ -187,10 +186,10 @@ export const ManifestoScene: React.FC = () => {
             className="absolute inset-0 flex flex-col items-center justify-center text-center select-none px-2"
             style={{ backfaceVisibility: 'hidden' }}
           >
-            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-[#d4ff00] uppercase mb-4">
+            <span className="font-cinzel text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#d4ff00] uppercase mb-4">
               {PHRASES[1].tag}
             </span>
-            <h2 className="font-editorial-headline font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white max-w-3xl">
+            <h2 className="font-aurora font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.15] text-white max-w-3xl">
               {PHRASES[1].line1} <br />
               <span className="text-[#d4ff00]">{PHRASES[1].accent}</span>
             </h2>
@@ -205,10 +204,10 @@ export const ManifestoScene: React.FC = () => {
             className="absolute inset-0 flex flex-col items-center justify-center text-center select-none px-2"
             style={{ backfaceVisibility: 'hidden' }}
           >
-            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-[#d4ff00] uppercase mb-4">
+            <span className="font-cinzel text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#d4ff00] uppercase mb-4">
               {PHRASES[2].tag}
             </span>
-            <h2 className="font-editorial-headline font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white max-w-3xl">
+            <h2 className="font-aurora font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.15] text-white max-w-3xl">
               {PHRASES[2].line1} <br />
               <span className="text-[#d4ff00]">{PHRASES[2].accent}</span>
             </h2>
@@ -219,7 +218,7 @@ export const ManifestoScene: React.FC = () => {
         </div>
 
         {/* Bottom Status / Guidance */}
-        <div className="max-w-4xl mx-auto w-full flex items-center justify-between border-t border-[#1c1c1c] pt-4 text-[11px] sm:text-xs text-[#666666] px-2">
+        <div className="max-w-4xl mx-auto w-full flex items-center justify-between border-t border-[#1c1c1c] pt-4 text-[10px] sm:text-xs text-[#666666] px-2">
           <span>Role para continuar</span>
           <span className="text-[#d4ff00]">Artistas a seguir ↓</span>
         </div>

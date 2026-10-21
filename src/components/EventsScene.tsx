@@ -14,7 +14,6 @@ export const EventsScene: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header reveal
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current,
@@ -32,12 +31,11 @@ export const EventsScene: React.FC = () => {
         )
       }
 
-      // Grid items staggered reveal with image zoom transition
       const items = gridRef.current?.children
       if (items && items.length > 0) {
         gsap.fromTo(
           items,
-          { opacity: 0, y: 40, scale: 0.96 },
+          { opacity: 0, y: 40, scale: 0.95 },
           {
             opacity: 1,
             y: 0,
@@ -64,20 +62,20 @@ export const EventsScene: React.FC = () => {
       className="relative w-full bg-black text-white py-16 sm:py-24 px-4 sm:px-8 border-t border-[#1c1c1c]"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Centered Header */}
+        {/* Centered Header with Aurora Font */}
         <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-10 sm:mb-14 px-2">
-          <span className="text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#d4ff00] uppercase block mb-3">
+          <span className="font-cinzel text-[10px] sm:text-xs font-semibold tracking-[0.3em] text-[#d4ff00] uppercase block mb-3">
             Contextos de Atuação
           </span>
-          <h2 className="font-editorial-headline font-black text-3xl sm:text-5xl md:text-6xl tracking-tight text-white mb-4">
+          <h2 className="font-aurora font-black text-3xl sm:text-5xl md:text-6xl tracking-tight text-white mb-3">
             EVENTOS & FORMATOS
           </h2>
-          <p className="text-xs sm:text-sm text-[#888888] leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#888888] leading-relaxed max-w-lg mx-auto">
             Formatos artísticos estruturados com rider técnico e cronograma para garantir o mais alto nível de entrega.
           </p>
         </div>
 
-        {/* 4 Formats Grid: Desktop 4 in a row, Mobile 2 per line */}
+        {/* 4 Formats Grid: Desktop 4 in a row, Mobile 2 per line, Safe Margins */}
         <div
           ref={gridRef}
           className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6"
@@ -97,15 +95,15 @@ export const EventsScene: React.FC = () => {
                 />
               </div>
 
-              <span className="text-[9px] sm:text-[10px] font-semibold text-[#d4ff00] uppercase tracking-wider mb-1 block">
+              <span className="font-cinzel text-[8px] sm:text-[9px] font-bold text-[#d4ff00] uppercase tracking-wider mb-1 block">
                 {exp.number} • {exp.subtitle.split('•')[0].trim()}
               </span>
 
-              <h3 className="font-editorial-headline font-bold text-base sm:text-xl text-white mb-2 leading-tight">
+              <h3 className="font-aurora font-bold text-sm sm:text-lg text-white mb-2 leading-tight">
                 {exp.title}
               </h3>
 
-              <p className="text-[11px] sm:text-xs text-[#888888] leading-relaxed mb-4 line-clamp-3">
+              <p className="text-[10px] sm:text-xs text-[#888888] leading-relaxed mb-4 line-clamp-3">
                 {exp.description}
               </p>
 
@@ -114,7 +112,7 @@ export const EventsScene: React.FC = () => {
                 href={getGeneralWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-auto inline-flex items-center justify-center gap-1.5 py-2.5 sm:py-3 bg-[#141414] hover:bg-[#d4ff00] text-white hover:text-black font-semibold text-[10px] sm:text-xs uppercase tracking-wider transition-colors border border-[#222222]"
+                className="mt-auto inline-flex items-center justify-center gap-1.5 py-2.5 sm:py-3 bg-[#141414] hover:bg-[#d4ff00] text-white hover:text-black font-cinzel font-semibold text-[9px] sm:text-xs uppercase tracking-wider transition-colors border border-[#222222]"
                 title="Consultar formato no WhatsApp"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5" />
