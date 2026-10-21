@@ -5,12 +5,14 @@ import { ARTISTS_DATA } from '../data/artists'
 import type { Artist } from '../data/artists'
 import { getArtistWhatsAppUrl } from '../config/agency'
 import { ArtistRiderModal } from './ArtistRiderModal'
+import { WhatsAppIcon } from './WhatsAppIcon'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export const ArtistsScene: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
   const [selectedCategory, setSelectedCategory] = useState<string>('TODOS')
   const [activeModalArtist, setActiveModalArtist] = useState<Artist | null>(null)
 
@@ -41,24 +43,44 @@ export const ArtistsScene: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const cards = cardsRef.current?.children
-      if (!cards || cards.length === 0) return
+      // Header entrance on scroll
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 85%',
+            },
+          }
+        )
+      }
 
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 35 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: 'top 80%',
-          },
-        }
-      )
+      // Cards staggered reveal with image zoom transition
+      const cards = cardsRef.current?.children
+      if (cards && cards.length > 0) {
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 40, scale: 0.96 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: 'top 80%',
+            },
+          }
+        )
+      }
     }, containerRef)
 
     return () => ctx.revert()
@@ -68,27 +90,28 @@ export const ArtistsScene: React.FC = () => {
     <section
       id="artistas"
       ref={containerRef}
-      className="relative w-full bg-black text-white py-16 sm:py-24 px-6 sm:px-10 border-t border-[#1c1c1c]"
+      className="relative w-full bg-black text-white py-16 sm:py-24 px-4 sm:px-8 border-t border-[#1c1c1c]"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Compact Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#1c1c1c] pb-6 mb-8">
-          <div>
-            <span className="text-xs font-semibold tracking-[0.25em] text-[#666666] uppercase block mb-2">
-              Casting de Artistas
-            </span>
-            <h2 className="font-editorial-headline font-black text-3xl sm:text-5xl tracking-tight text-white">
-              ARTISTAS HYPE
-            </h2>
-          </div>
+        {/* Centered Header */}
+        <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-10 sm:mb-14 px-2">
+          <span className="text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#d4ff00] uppercase block mb-3">
+            Casting Oficial
+          </span>
+          <h2 className="font-editorial-headline font-black text-3xl sm:text-5xl md:text-6xl tracking-tight text-white mb-4">
+            ARTISTAS HYPE
+          </h2>
+          <p className="text-xs sm:text-sm text-[#888888] leading-relaxed">
+            Selecione o artista ideal para o seu evento e consulte disponibilidade diretamente com nossa curadoria.
+          </p>
 
-          {/* Compact Category Filters */}
-          <div className="flex items-center gap-2 overflow-x-auto py-1 no-scrollbar">
+          {/* Centered Category Filters */}
+          <div className="flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap pt-6">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 text-xs tracking-wider uppercase transition-colors whitespace-nowrap ${
+                className={`px-3 py-1.5 text-[11px] sm:text-xs tracking-wider uppercase transition-colors whitespace-nowrap ${
                   selectedCategory === cat
                     ? 'bg-[#d4ff00] text-black font-semibold'
                     : 'bg-[#111111] text-[#888888] hover:text-white border border-[#222222]'
@@ -100,62 +123,63 @@ export const ArtistsScene: React.FC = () => {
           </div>
         </div>
 
-        {/* Compact 2-Column Grid */}
+        {/* Artists Grid: Desktop 4 in a row, Mobile 2 per row ("dois por linha") */}
         <div
           ref={cardsRef}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6"
         >
           {filteredArtists.map((artist) => (
             <div
               key={artist.id}
-              className="bg-[#0a0a0a] border border-[#1f1f1f] flex flex-col p-5 sm:p-6 hover:border-[#333333] transition-colors"
+              className="group bg-[#0a0a0a] border border-[#1f1f1f] flex flex-col p-3 sm:p-5 hover:border-[#333333] transition-all duration-300"
             >
-              {/* Photo Frame */}
-              <div className="relative aspect-[16/10] overflow-hidden bg-[#111111] mb-5 border border-[#1c1c1c]">
+              {/* Photo Frame with smooth scale transition */}
+              <div className="relative aspect-[4/5] sm:aspect-[16/11] overflow-hidden bg-[#111111] mb-3 sm:mb-4 border border-[#1c1c1c]">
                 <img
                   src={artist.images.hero}
                   alt={artist.name}
                   loading="lazy"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
                 />
-                <span className="absolute top-3 left-3 px-2.5 py-1 bg-black/85 text-[10px] font-semibold text-[#d4ff00] uppercase tracking-wider">
+                <span className="absolute top-2 left-2 px-2 py-0.5 bg-black/85 text-[9px] sm:text-[10px] font-semibold text-[#d4ff00] uppercase tracking-wider">
                   {artist.genre}
                 </span>
               </div>
 
-              {/* Title & Info */}
-              <div className="flex items-baseline justify-between gap-2 mb-2">
-                <h3 className="font-editorial-headline font-black text-2xl sm:text-3xl text-white">
+              {/* Artist Name & Subgenre */}
+              <div className="text-center mb-2">
+                <h3 className="font-editorial-headline font-black text-lg sm:text-2xl text-white tracking-tight truncate group-hover:text-[#d4ff00] transition-colors">
                   {artist.name}
                 </h3>
-                <span className="text-xs text-[#777777] font-medium">{artist.subGenre}</span>
+                <span className="text-[10px] sm:text-xs text-[#777777] font-medium block truncate">
+                  {artist.subGenre}
+                </span>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#888888] line-clamp-2 leading-relaxed mb-5">
-                {artist.description}
-              </p>
-
-              {/* Specs Bar */}
-              <div className="flex items-center gap-2 py-2.5 px-3 bg-[#111111] border border-[#1c1c1c] text-[11px] text-[#aaaaaa] mb-5">
-                <span>{artist.rider.format}</span>
-                <span className="text-[#444444]">•</span>
+              {/* Specs Pill */}
+              <div className="hidden sm:flex items-center justify-center gap-1.5 py-1.5 px-2 bg-[#111111] border border-[#1c1c1c] text-[10px] text-[#aaaaaa] mb-4 text-center">
                 <span>{artist.rider.duration}</span>
+                <span className="text-[#444444]">•</span>
+                <span>{artist.rider.crewCount} integrantes</span>
               </div>
 
-              {/* Actions */}
-              <div className="mt-auto flex items-center gap-2 pt-2">
+              {/* Action Buttons: WhatsApp Icon Only, No Phone Number */}
+              <div className="mt-auto flex flex-col sm:flex-row items-stretch gap-1.5 sm:gap-2 pt-2">
                 <a
                   href={getArtistWhatsAppUrl(artist.name)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-1.5 py-3 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-bold text-xs tracking-wider uppercase transition-colors"
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 sm:py-3 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-bold text-[10px] sm:text-xs tracking-wider uppercase transition-colors"
+                  title="Contratar este artista via WhatsApp"
                 >
-                  <span>CONTRATAR NO WHATSAPP</span>
-                  <span>→</span>
+                  <WhatsAppIcon className="w-3.5 h-3.5" />
+                  <span>CONTRATAR</span>
                 </a>
+
                 <button
                   onClick={() => setActiveModalArtist(artist)}
-                  className="px-4 py-3 border border-[#2a2a2a] hover:border-white text-white text-xs tracking-wider uppercase transition-colors"
+                  className="px-2.5 py-2 sm:py-3 border border-[#2a2a2a] hover:border-white text-white text-[10px] sm:text-xs tracking-wider uppercase transition-colors"
+                  title="Ver rider técnico"
                 >
                   RIDER
                 </button>
@@ -165,6 +189,7 @@ export const ArtistsScene: React.FC = () => {
         </div>
       </div>
 
+      {/* Technical Rider Modal */}
       <ArtistRiderModal
         artist={activeModalArtist}
         onClose={() => setActiveModalArtist(null)}

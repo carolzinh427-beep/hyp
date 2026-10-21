@@ -102,8 +102,7 @@ export const ManifestoScene: React.FC = () => {
         0.3
       )
 
-      // Hold slide 2 briefly
-      tl.to({}, { duration: 0.5 })
+      tl.to({}, { duration: 0.4 })
 
       // Phase 2: Slide 2 flips up & out, Slide 3 flips in
       tl.to(
@@ -115,7 +114,7 @@ export const ManifestoScene: React.FC = () => {
           ease: 'power2.inOut',
           duration: 1,
         },
-        1.8
+        1.6
       )
       tl.to(
         s3,
@@ -126,11 +125,10 @@ export const ManifestoScene: React.FC = () => {
           ease: 'power2.inOut',
           duration: 1,
         },
-        1.9
+        1.7
       )
 
-      // Hold slide 3
-      tl.to({}, { duration: 0.5 })
+      tl.to({}, { duration: 0.4 })
     }, containerRef)
 
     return () => ctx.revert()
@@ -144,14 +142,14 @@ export const ManifestoScene: React.FC = () => {
     >
       <div
         ref={pinTargetRef}
-        className="w-full h-screen flex flex-col justify-between py-12 px-6 sm:px-12 relative overflow-hidden"
+        className="w-full h-screen flex flex-col justify-between py-12 px-4 sm:px-8 relative overflow-hidden"
       >
         {/* Top Header & Indicator */}
-        <div className="max-w-5xl mx-auto w-full flex items-center justify-between border-b border-[#1c1c1c] pb-4">
-          <span className="text-xs font-semibold tracking-[0.25em] text-[#666666] uppercase">
-            Manifesto • Scroll Interativo
+        <div className="max-w-4xl mx-auto w-full flex items-center justify-between border-b border-[#1c1c1c] pb-4 px-2">
+          <span className="text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#666666] uppercase">
+            Manifesto • Filosofia
           </span>
-          <div className="flex items-center gap-3 text-xs tracking-widest font-mono text-[#888888]">
+          <div className="flex items-center gap-2 text-xs tracking-widest font-mono text-[#888888]">
             <span className={currentStep === 1 ? 'text-[#d4ff00] font-bold' : 'text-[#444444]'}>01</span>
             <span className="text-[#333333]">/</span>
             <span className={currentStep === 2 ? 'text-[#d4ff00] font-bold' : 'text-[#444444]'}>02</span>
@@ -160,25 +158,25 @@ export const ManifestoScene: React.FC = () => {
           </div>
         </div>
 
-        {/* 3D Flipping Stage */}
+        {/* 3D Flipping Stage (Centered) */}
         <div
-          className="relative max-w-5xl mx-auto w-full my-auto h-[320px] sm:h-[360px] flex items-center justify-center"
+          className="relative max-w-4xl mx-auto w-full my-auto h-[320px] sm:h-[360px] flex items-center justify-center px-2"
           style={{ perspective: '1100px', transformStyle: 'preserve-3d' }}
         >
           {/* Slide 1 */}
           <div
             ref={slide1Ref}
-            className="absolute inset-0 flex flex-col items-center justify-center text-center select-none"
+            className="absolute inset-0 flex flex-col items-center justify-center text-center select-none px-2"
             style={{ backfaceVisibility: 'hidden' }}
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-[#d4ff00] uppercase mb-4">
+            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-[#d4ff00] uppercase mb-4">
               {PHRASES[0].tag}
             </span>
-            <h2 className="font-editorial-headline font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[1.05] text-white max-w-4xl">
+            <h2 className="font-editorial-headline font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white max-w-3xl">
               {PHRASES[0].line1} <br />
               <span className="text-[#d4ff00]">{PHRASES[0].accent}</span>
             </h2>
-            <p className="mt-6 text-sm sm:text-base text-[#888888] max-w-md">
+            <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-[#888888] max-w-md">
               {PHRASES[0].sub}
             </p>
           </div>
@@ -186,17 +184,17 @@ export const ManifestoScene: React.FC = () => {
           {/* Slide 2 */}
           <div
             ref={slide2Ref}
-            className="absolute inset-0 flex flex-col items-center justify-center text-center select-none"
+            className="absolute inset-0 flex flex-col items-center justify-center text-center select-none px-2"
             style={{ backfaceVisibility: 'hidden' }}
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-[#d4ff00] uppercase mb-4">
+            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-[#d4ff00] uppercase mb-4">
               {PHRASES[1].tag}
             </span>
-            <h2 className="font-editorial-headline font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[1.05] text-white max-w-4xl">
+            <h2 className="font-editorial-headline font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white max-w-3xl">
               {PHRASES[1].line1} <br />
               <span className="text-[#d4ff00]">{PHRASES[1].accent}</span>
             </h2>
-            <p className="mt-6 text-sm sm:text-base text-[#888888] max-w-md">
+            <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-[#888888] max-w-md">
               {PHRASES[1].sub}
             </p>
           </div>
@@ -204,26 +202,26 @@ export const ManifestoScene: React.FC = () => {
           {/* Slide 3 */}
           <div
             ref={slide3Ref}
-            className="absolute inset-0 flex flex-col items-center justify-center text-center select-none"
+            className="absolute inset-0 flex flex-col items-center justify-center text-center select-none px-2"
             style={{ backfaceVisibility: 'hidden' }}
           >
-            <span className="text-xs font-semibold tracking-[0.2em] text-[#d4ff00] uppercase mb-4">
+            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-[#d4ff00] uppercase mb-4">
               {PHRASES[2].tag}
             </span>
-            <h2 className="font-editorial-headline font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[1.05] text-white max-w-4xl">
+            <h2 className="font-editorial-headline font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white max-w-3xl">
               {PHRASES[2].line1} <br />
               <span className="text-[#d4ff00]">{PHRASES[2].accent}</span>
             </h2>
-            <p className="mt-6 text-sm sm:text-base text-[#888888] max-w-md">
+            <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-[#888888] max-w-md">
               {PHRASES[2].sub}
             </p>
           </div>
         </div>
 
         {/* Bottom Status / Guidance */}
-        <div className="max-w-5xl mx-auto w-full flex items-center justify-between border-t border-[#1c1c1c] pt-4 text-xs text-[#666666]">
+        <div className="max-w-4xl mx-auto w-full flex items-center justify-between border-t border-[#1c1c1c] pt-4 text-[11px] sm:text-xs text-[#666666] px-2">
           <span>Role para continuar</span>
-          <span className="text-[#d4ff00]">Casting a seguir ↓</span>
+          <span className="text-[#d4ff00]">Artistas a seguir ↓</span>
         </div>
       </div>
     </section>

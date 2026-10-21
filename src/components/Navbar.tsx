@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getGeneralWhatsAppUrl } from '../config/agency'
+import { WhatsAppIcon } from './WhatsAppIcon'
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
@@ -24,10 +25,10 @@ export const Navbar = () => {
     <>
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-          scrolled ? 'bg-black/95 border-b border-[#1c1c1c] py-4' : 'bg-black/80 py-6'
+          scrolled ? 'bg-black/95 border-b border-[#1c1c1c] py-4' : 'bg-black/80 py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between">
           {/* Logo */}
           <a
             href="#"
@@ -37,7 +38,7 @@ export const Navbar = () => {
             <span className="font-editorial-headline font-black text-xl sm:text-2xl tracking-tighter text-white">
               HYPE
             </span>
-            <span className="text-[11px] tracking-[0.25em] text-[#666666] uppercase font-semibold border-l border-[#222222] pl-3">
+            <span className="text-[10px] sm:text-[11px] tracking-[0.25em] text-[#777777] uppercase font-semibold border-l border-[#222222] pl-3">
               ENTERTAINMENT
             </span>
           </a>
@@ -55,21 +56,32 @@ export const Navbar = () => {
             ))}
           </nav>
 
-          {/* Action Button */}
+          {/* Action Button - Icon Only / Clean Action without phone digits */}
           <div className="hidden sm:flex items-center">
             <a
               href={getGeneralWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-semibold text-xs tracking-wider uppercase transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#d4ff00] hover:bg-[#c2ea00] text-black font-semibold text-xs tracking-wider uppercase transition-colors"
+              title="Falar no WhatsApp"
             >
+              <WhatsAppIcon className="w-4 h-4" />
               <span>WHATSAPP</span>
-              <span>→</span>
             </a>
           </div>
 
-          {/* Mobile Menu Trigger */}
-          <div className="flex sm:hidden items-center">
+          {/* Mobile Menu Trigger & Quick WhatsApp */}
+          <div className="flex sm:hidden items-center gap-2">
+            <a
+              href={getGeneralWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-[#d4ff00] text-black"
+              aria-label="WhatsApp"
+            >
+              <WhatsAppIcon className="w-4 h-4" />
+            </a>
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="px-3 py-1.5 border border-[#222222] text-xs font-semibold uppercase tracking-wider text-white"
@@ -83,14 +95,14 @@ export const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-black flex flex-col justify-between p-8 pt-28 sm:hidden">
-          <nav className="flex flex-col gap-6">
+        <div className="fixed inset-0 z-40 bg-black flex flex-col justify-between p-6 pt-24 sm:hidden">
+          <nav className="flex flex-col gap-5">
             {navLinks.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="font-editorial-headline font-bold text-3xl text-white hover:text-[#d4ff00] transition-colors border-b border-[#1c1c1c] pb-4"
+                className="font-editorial-headline font-bold text-2xl text-white hover:text-[#d4ff00] transition-colors border-b border-[#1c1c1c] pb-3"
               >
                 {item.label}
               </a>
@@ -102,9 +114,10 @@ export const Navbar = () => {
               href={getGeneralWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full text-center py-4 bg-[#d4ff00] text-black font-bold text-xs tracking-widest uppercase block"
+              className="w-full text-center py-3.5 bg-[#d4ff00] text-black font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2"
             >
-              FALAR NO WHATSAPP →
+              <WhatsAppIcon className="w-4 h-4" />
+              <span>FALAR NO WHATSAPP</span>
             </a>
           </div>
         </div>
